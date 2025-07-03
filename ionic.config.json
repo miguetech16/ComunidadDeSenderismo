@@ -1,0 +1,7 @@
+{
+  "name": "ComunidadDeSenderismo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
