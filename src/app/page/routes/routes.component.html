@@ -1,0 +1,9 @@
+
+<img class="home-image" src="/assets/images/routes.png"  alt="home-image">
+
+<app-route-searcher (searchTerm)="onSearchTermChanged($event)"></app-route-searcher>
+
+<div class="routes-container">
+ <app-route-card class="route-card" *ngFor="let route of routes$ | async" [route]="route"></app-route-card> 
+</div>
+

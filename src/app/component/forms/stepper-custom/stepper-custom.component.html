@@ -1,0 +1,125 @@
+<form [formGroup]="routeForm" (ngSubmit)="submitRoute()" class="unified-form">
+
+  <section>
+    <h2>Datos de la Ruta</h2>
+
+    <h3>1. Indica el nombre de la Ruta a Compartir</h3>
+    <mat-form-field appearance="outline" class="route-name">
+      <mat-label>Nombre de Ruta</mat-label>
+      <input matInput placeholder="Ruta de Barranco..." formControlName="title" required />
+      <div class="error" *ngIf="routeForm.get('title')?.invalid && routeForm.get('title')?.touched">
+          <small *ngIf="routeForm.get('title')?.errors?.['required']">El Título de Ruta es obligatorio.</small>
+          <small *ngIf="routeForm.get('title')?.errors?.['minlength']">Debe tener al menos 5 caracteres.</small>
+          <small *ngIf="routeForm.get('title')?.errors?.['maxlength']">Debe tener menos de 20 caracteres.</small>
+        </div>
+    </mat-form-field>
+
+    <h3>2. Describe un poco mejor la Ruta</h3>
+    <mat-form-field appearance="outline" class="route-description">
+      <mat-label>Descripción de Ruta</mat-label>
+      <textarea matInput placeholder="La Ruta contiene bonitos paisajes..." formControlName="description"></textarea>
+            <div class="error" *ngIf="routeForm.get('description')?.invalid && routeForm.get('description')?.touched">
+          <small *ngIf="routeForm.get('description')?.errors?.['required']">La Descripción de Ruta es obligatorio.</small>
+          <small *ngIf="routeForm.get('description')?.errors?.['minlength']">Debe tener al menos 5 caracteres.</small>
+          <small *ngIf="routeForm.get('description')?.errors?.['maxlength']">Debe tener menos de 200 caracteres.</small>
+        </div>
+    </mat-form-field>
+  </section>
+
+  <section>
+    <h2>Ubicación</h2>
+    <h3>Selecciona la ubicación de tu Ruta</h3>
+
+    <mat-form-field appearance="outline" class="route-ubication">
+      <mat-label>País de Ruta</mat-label>
+      <input matInput placeholder="España..." formControlName="ubication1" required />
+        <div class="error" *ngIf="routeForm.get('ubication1')?.invalid && routeForm.get('ubication1')?.touched">
+          <small *ngIf="routeForm.get('ubication1')?.errors?.['required']">El País de Ruta es obligatorio.</small>
+          <small *ngIf="routeForm.get('ubication1')?.errors?.['maxlength']">Debe tener menos de 15 caracteres.</small>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="route-ubication">
+      <mat-label>Provincia de Ruta</mat-label>
+      <input matInput placeholder="Galicia..." formControlName="ubication2" required />
+        <div class="error" *ngIf="routeForm.get('ubication2')?.invalid && routeForm.get('ubication2')?.touched">
+          <small *ngIf="routeForm.get('ubication2')?.errors?.['required']">La Provincia de Ruta es obligatorio.</small>
+          <small *ngIf="routeForm.get('ubication2')?.errors?.['maxlength']">Debe tener menos de 15 caracteres.</small>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="route-ubication">
+      <mat-label>Municipio de Ruta</mat-label>
+      <input matInput placeholder="Lugo..." formControlName="ubication3" required />
+        <div class="error" *ngIf="routeForm.get('ubication3')?.invalid && routeForm.get('ubication3')?.touched">
+          <small *ngIf="routeForm.get('ubication3')?.errors?.['required']">El Municipio de Ruta es obligatorio.</small>
+          <small *ngIf="routeForm.get('ubication3')?.errors?.['maxlength']">Debe tener menos de 15 caracteres.</small>
+        </div>
+    </mat-form-field>
+
+    <br>
+    <h3>Selecciona la ubicación en el mapa</h3>
+    <app-map (coordinatesSelected)="onCoordinatesSelected($event)"></app-map>
+  </section>
+
+  <section>
+    <h2>Información Adicional</h2>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Recomendaciones de Ruta</mat-label>
+      <textarea matInput rows="4"
+        placeholder="¿Qué recomendaciones darías a los usuarios que quieran realizar esta Ruta?"
+        required formControlName="recommendations" minlength="10"></textarea>
+        <div class="error" *ngIf="routeForm.get('recommendations')?.invalid && routeForm.get('recommendations')?.touched">
+          <small *ngIf="routeForm.get('recommendations')?.errors?.['required']">Ofrece tus recomendaciones a otros usuarios.</small>
+          <small *ngIf="routeForm.get('recommendations')?.errors?.['maxlength']">Debe tener menos de 200 caracteres.</small>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Distancia estimada (km)</mat-label>
+      <input matInput type="number" min="0" placeholder="Por ejemplo: 5.2" formControlName="distance" required />
+        <div class="error" *ngIf="routeForm.get('distance')?.invalid && routeForm.get('distance')?.touched">
+          <small *ngIf="routeForm.get('distance')?.errors?.['required']">La distancia estimada es obligatoria.</small>
+          <small *ngIf="routeForm.get('distance')?.errors?.['max']">La Ruta no debe exceder los 1000km.</small>
+          <small *ngIf="routeForm.get('distance')?.errors?.['min']">La Ruta debe tener al menos 0.01km.</small>
+          <small *ngIf="routeForm.get('distance')?.errors?.['pattern']">Solo números, usa el punto para más precisión </small>
+        </div>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label class="dificultad-label">Dificultad de la Ruta</label>
+      <mat-radio-group formControlName="difficulty" class="radio-group">
+        <mat-radio-button value="1">Fácil</mat-radio-button>
+        <mat-radio-button value="2">Intermedia</mat-radio-button>
+        <mat-radio-button value="3">Difícil</mat-radio-button>
+        <mat-radio-button value="4">Extrema</mat-radio-button>
+      </mat-radio-group>
+      <div class="error" *ngIf="routeForm.get('difficulty')?.invalid && routeForm.get('difficulty')?.touched">
+          <small *ngIf="routeForm.get('difficulty')?.errors?.['required']">Indica la Dificultad que consideras para esta ruta.</small>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sube Imágenes</h2>
+
+    <h3>Sube imágenes de la Ruta que has compartido</h3>
+    <h4>Puedes subir hasta 4 imágenes de la Ruta, del paisaje, de la flora y fauna...</h4>
+    <br>
+    <input type="file" (change)="saveImages($event)" accept=".jpg, .png, .jpeg" multiple id="updateImages"/>
+    <label for="updateImages" class="inputImages">
+      <mat-icon class="icon">upload</mat-icon>
+    </label>
+  </section>
+
+  <section>
+    <h2> Previsualizador de Imágenes </h2>
+        <img *ngFor="let img of selectedImages" [src]="img" />
+  </section>
+
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" [disabled]="!updated || routeForm.invalid" type="submit">Guardar ruta</button>
+  </div>
+</form>
+

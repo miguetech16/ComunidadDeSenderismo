@@ -1,0 +1,73 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <!-- Rutas -->
+  <section>
+  <h3>1. Selecciona una Ruta</h3>
+
+  <app-route-searcher (searchTerm)="onSearchTermChanged($event)"></app-route-searcher>
+
+  <div class="routes-container">
+  <app-route-card
+          class="route-card"
+          *ngFor="let route of routes$ | async" 
+          [route]="route"
+          [ngClass]="{ 'selected': form.get('selectedRoute')?.value === route.id }"
+          (click)="form.get('selectedRoute')?.setValue(route.id)">
+</app-route-card>
+  <div *ngIf="form.get('selectedRoute')?.invalid && form.get('selectedRoute')?.touched" class="error">
+             <small *ngIf="form.get('selectedRoute')?.errors?.['required']">Es necesario seleccionar una Ruta.</small>
+  </div>
+  </div>
+</section>
+
+  <!-- Formulario -->
+  <section>
+
+  <h3>2. Selecciona una Fecha</h3>
+  <mat-form-field class="Calendar">
+    <mat-label>Selecciona una Fecha</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="selectedDate" [min]="minDate" [max]="maxDate" required>
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker ></mat-datepicker>
+  <div *ngIf="form.get('selectedDate')?.invalid && form.get('selectedDate')?.touched" class="error">
+      <small *ngIf="form.get('selectedDate')?.errors?.['required']">Es necesario seleccionar una Fecha.</small>
+  </div>
+  </mat-form-field>
+
+  <h3>3. Selecciona una Hora</h3>
+  <mat-form-field appearance="fill">
+    <mat-label>Hora</mat-label>
+    <input matInput placeholder="HH:mm" formControlName="selectedTime">
+    <div *ngIf="form.get('selectedTime')?.invalid && form.get('selectedTime')?.touched" class="error">
+      <small *ngIf="form.get('selectedTime')?.errors?.['required']">Es necesario seleccionar una Hora.</small>
+      <small *ngIf="form.get('selectedTime')?.errors?.['pattern']">El formato de la hora debe ser HH:mm.</small>
+    </div>
+  </mat-form-field>
+
+
+  <h3>4. Selecciona el Tipo de Planificación</h3>
+
+  <div class="info-box">
+    <mat-icon class="icon">info</mat-icon> 
+      <div class="info-text">
+        <p><strong>Planificación Abierta:</strong> Permite que otros usuarios se unan a tu planificación.</p>
+        <p><strong>Planificación Cerrada:</strong> Solo tú y los usuarios que invites pueden participar.</p>
+      </div>
+  </div>
+
+  <mat-radio-group formControlName="planType">
+    <mat-radio-button [value]="true">Planificación Abierta</mat-radio-button>
+    <mat-radio-button [value]="false">Planificación Cerrada</mat-radio-button>
+  <div *ngIf="form.get('selectedDate')?.invalid && form.get('selectedDate')?.touched" class="error">
+      <small *ngIf="form.get('planType')?.errors?.['required']">Es necesario seleccionar el tipo de Planificación.</small>
+  </div>
+  </mat-radio-group>
+</section>
+<div>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit">Crear Planificación</button>
+</div>
+</form>

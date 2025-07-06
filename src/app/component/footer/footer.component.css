@@ -1,0 +1,38 @@
+body {
+    height: 100%; 
+    margin: 0; 
+    flex-direction: column; 
+}
+
+.logo {
+    height: auto;
+    width: 100px;
+    align-items: center; 
+}
+
+
+.footer-content {
+    background-color: #a5d6a6; 
+    color: black;
+    text-align: center; 
+    padding: 20px 0; 
+    font-size: 16px; 
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1); 
+    position: relative; 
+}
+
+.footer-content a {
+    color: black; 
+    text-decoration: none; 
+    margin: 0 10px; 
+    transition: color 0.3s; 
+}
+
+.footer-content a:hover {
+    color: #25cf25; 
+}
+
+.footer-content .footer-social-media {
+    margin-top: 10px; 
+}
+

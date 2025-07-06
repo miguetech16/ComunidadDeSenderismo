@@ -1,0 +1,21 @@
+<mat-card class="route-card" appearance="outlined">
+  <mat-card-header>
+    <div class="header-content">
+      <div>
+        <mat-card-title>{{ route.title }}</mat-card-title>
+        <mat-card-subtitle>
+          <mat-icon class="icon">location_on</mat-icon>
+          {{ route.ubication[0] }}, {{ route.ubication[1] }} {{ route.ubication[2] }}
+        </mat-card-subtitle>
+      </div>
+    </div>
+  </mat-card-header>
+  <img *ngIf="route.images?.length > 0" [src]="route.images[0]" />
+  <mat-card-content>
+    <p>{{ route.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/route-description', route.id]">Ver</a>
+    <a mat-button [routerLink]="['/planned-routes', route.id]">Planificar</a>
+  </mat-card-actions>
+</mat-card>

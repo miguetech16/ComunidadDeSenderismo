@@ -1,0 +1,153 @@
+.routes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+  }
+
+  .planned-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+  .images-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+  }
+
+.avatar-image {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Card general */
+.profile-card {
+  max-width: 1500px;
+  margin: 40px auto;
+  background-color: white;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  padding: 10px 20px;
+}
+
+/* Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+/* Información del usuario */
+.profile-info {
+  flex-grow: 1;
+  margin-left: 15px;
+}
+
+.username-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.username {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.publico {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.fullname {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+#followingMenu{
+  background-color: white;
+}
+
+#followersMenu {
+  background-color: white;
+}
+
+.follow-item {
+  display: flex;
+  align-items: center;
+}
+
+.follow-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.follow-username {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+
+
+/* Seguidores/Seguidos */
+.social-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30px;
+  font-size: 1rem;
+  min-width: 80px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.social-info p:nth-child(odd) {
+  font-weight: 600;
+  margin: 10px;
+  background-color: white;
+}
+.social-info p:nth-child(even) {
+  margin: 0 0 10px;
+  background-color: white;
+}
+
+.header-buttons {
+    display: flex;
+    margin-left: auto;
+    gap: 20px;
+    padding: 20px;
+    margin-right: 40px;
+}
+
+mat-card-title {
+  font-size: 1.8rem;
+  color: #2e7d32;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #c8e6c9;
+  padding-bottom: 0.5rem;
+}

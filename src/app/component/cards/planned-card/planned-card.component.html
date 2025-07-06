@@ -1,0 +1,62 @@
+<div class="planned-card" *ngIf="plannedRoute">
+  <mat-card-header>
+    <div class="header-left">
+    <div mat-card-avatar class="avatar-image">
+      <a [routerLink]="['/user-profile', plannedRoute.creatorId]">
+        <img [src]="plannedRoute.creatorAvatar || 'assets/images/default-profile.png'" alt="" class="avatar-img" />
+      </a>
+    </div>
+      <mat-card-subtitle>{{ plannedRoute.creatorName }}</mat-card-subtitle>
+    </div>
+
+    <mat-card-title>{{ plannedRoute.plannedRouteTitle }}</mat-card-title>
+
+  </mat-card-header>
+
+  <mat-card-content>
+    <img *ngIf="plannedRoute.routePicture" [src]="plannedRoute.routePicture" class="route-image" />
+
+    <div class="info-grid">
+
+    <div class="info-item">
+        <mat-icon class="icon">event</mat-icon> {{ plannedRoute.date.toDate() | date: 'dd/MM/yyyy' }}
+    </div>
+
+    <div class="info-item">
+        <mat-icon class="icon">schedule </mat-icon> {{ plannedRoute.hour }}
+    </div>
+
+    <div class="info-item">
+        <mat-icon class="icon">settings_accessibility</mat-icon> {{ plannedRoute.planType ? 'Planificación Abierta' : 'Planificación Cerrada' }}
+    </div>
+
+    <div class="info-item">
+        <mat-icon class="icon">groups</mat-icon> Participantes: {{ plannedRoute.users.length }}
+    </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions *ngIf="plannedRoute.planType == true; else closed">
+    <a mat-button [routerLink]="['/planned-view', plannedRoute.id]">Ver Plan</a>
+
+  <div *ngIf="this.currentUserId != this.plannedRoute.creatorId">
+    
+    <div *ngIf="isParticipant==false; else noParticipant">
+      <button mat-button (click)="joinPlannedRoute()"> Unirse a Ruta</button>
+    </div>
+    
+    <ng-template #noParticipant>
+      <button mat-button (click)="exitPlannedRoute()"> Dejar Ruta</button>
+    </ng-template>
+
+  </div>
+  </mat-card-actions>
+
+ <ng-template #closed>
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/planned-view', plannedRoute.id]">Ver Plan</a>
+  </mat-card-actions>
+ </ng-template>
+
+
+</div>

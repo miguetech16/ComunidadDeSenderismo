@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #dce775, #f0f4c3);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.singinform {
+    position: flex;
+    margin-top: 2em;
+    margin-left: 32%;
+    margin-bottom: 2em;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+h1 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+mat-card {
+    display: center;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    padding: 10px 0;
+    font-weight: bold;
+    background-color: #8bc34a;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c1f38c;
+}
+
+.message {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    color: #449cf5;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.message:hover {
+    text-decoration: underline;
+}
+
+.error small {
+  color: red;
+  font-size: 0.8rem;
+}
+input.ng-invalid.ng-touched {
+  border-color: red;
+}

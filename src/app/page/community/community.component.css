@@ -1,0 +1,70 @@
+.images-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+  }
+
+  h2 {
+  font-size: 1.8rem;
+  color: #2e7d32;
+  margin: 1rem;
+  border-bottom: 2px solid #c8e6c9;
+  padding-bottom: 0.5rem;
+  }
+
+.community-image{
+  display: flex;
+  margin-left: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 3rem;
+}
+  
+  .user-card {
+    width: 100%;
+    max-width: 350px;
+  }
+
+ .user-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    padding: 10px;
+  }
+    
+  .user-card p {
+    font-size: 1em;
+    color: #555;
+  }
+
+.avatar-image {
+    background-image: url(https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png);
+    background-size: cover;
+    background-position: center;
+}
+
+/* Contenedor general para todos los usuarios */
+.users-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.planned-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  margin: 1rem;
+}
+  

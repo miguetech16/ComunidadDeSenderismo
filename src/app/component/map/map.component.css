@@ -1,0 +1,9 @@
+
+.leaflet-map-container, #mi_mapa {
+  width: 100%;
+  min-width: 100px;
+  height: 500px;
+  min-height: 300px;
+  max-width: 100%;
+  box-sizing: border-box;
+}

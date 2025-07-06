@@ -1,0 +1,76 @@
+<div class="header">
+    <div class="header-content">
+
+        <div class="logo-container">
+            <a href="routes">
+              <img src="assets/images/logo.png" class="logo" alt="logo">
+            </a>     
+         </div>
+    
+        <section class="sections">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="custom-routes">Rutas Personalizadas</a></li>
+                <li><a href="routes">Rutas</a></li>
+                <li><a href="planned-routes">Planificar Rutas</a></li>
+                <li><a href="community">Comunidad</a></li>
+            </ul>
+        </nav>
+        </section>
+
+        <section class="icons">
+<div class="Notifications" *ngIf="user; else notIcons">
+  <mat-icon [matMenuTriggerFor]="notificationsMenu">notifications</mat-icon>
+</div>
+
+<mat-menu #notificationsMenu="matMenu" class="notifications-menu">
+  <ng-container *ngIf="notifications && notifications.length > 0; else noNotifications">
+    <button mat-menu-item *ngFor="let notification of notifications"
+            class="notification-button"
+            [ngClass]="{ 'read': notification.read, 'unread': !notification.read }"
+            disableRipple>
+      <div (click)="markAsRead(notification.id)">
+          <span class="notification-message">{{ notification.message }}</span>
+      </div>
+      <mat-icon class="delete-icon" (click)="deleteNotification($event, notification)">cancel</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-template #noNotifications>
+    <button mat-menu-item disabled>No hay notificaciones</button>
+  </ng-template>
+</mat-menu>
+
+
+
+            <div class="messages" *ngIf="user; else notIcons">
+              <a [routerLink]="['/chat-list', user.uid]">
+                <mat-icon fontIcon="chat"></mat-icon>
+              </a>
+            </div>
+
+            <ng-template #notIcons></ng-template>
+    
+<div class="profile" *ngIf="user; else signInLink">
+  <a [routerLink]="['/user-profile', user.uid]">
+    <div mat-card-avatar class="avatar-image">
+      <img [src]="user.profilePicture || '/assets/images/default-profile.png'" alt="Avatar" class="avatar-img" />
+    </div>
+  </a>
+</div>
+
+<ng-template #signInLink>
+  <div class="profile">
+    <a [routerLink]="['/sign-in']">
+      <div mat-card-avatar class="avatar-image">
+        <img src="/assets/images/default-profile.png" alt="Avatar" class="avatar-img" />
+      </div>
+    </a>
+  </div>
+</ng-template>
+
+    
+        </section>
+    </div>
+</div>
+<div class="header-background"></div>

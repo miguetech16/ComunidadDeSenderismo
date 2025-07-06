@@ -1,0 +1,55 @@
+
+<div *ngIf="chatList.length >= 1; else noChats">
+
+  
+  <mat-card class="chat-list-card">
+    <mat-card-title class="chatTitle">Mis Chats</mat-card-title>
+    <mat-card-content>
+
+      
+      <div *ngFor="let chat of chatList" [routerLink]="['/user-chat', chat.chatId]" class="chat-container">
+        <mat-card class="chat-item-card">
+
+          
+          <div *ngIf="chat.users[0] === userid; else otherUser">
+            <mat-card-header>
+              <div mat-card-avatar class="avatar-image">
+                <img [src]="chat.chatPicture[1] || '/assets/images/default-profile.png'" alt="Avatar" class="avatar-img" />
+              </div>
+              <div class="chat-text-content">
+              <div class="userName">{{ chat.userNames[1] }}</div>
+              <div class="message-and-time" *ngIf="chat.lastMessage">
+                <div class="lastMessage">{{ chat.lastMessage }}</div>
+                <div class="lastMessageTime" >{{ chat.timestamp.toDate() | date: 'dd/MM/yyyy - HH:mm' }}</div>
+              </div>
+              </div>
+            </mat-card-header>
+          </div>
+
+          
+          <ng-template #otherUser>
+            <mat-card-header>
+              <div mat-card-avatar class="avatar-image">
+                <img [src]="chat.chatPicture[0] || '/assets/images/default-profile.png'" alt="Avatar" class="avatar-img" />
+              </div>
+              <div class="chat-text-content">
+              <div class="userName">{{ chat.userNames[0] }}</div>
+              <div class="message-and-time" *ngIf="chat.lastMessage">
+                <div class="lastMessage">{{ chat.lastMessage }}</div>
+                <div class="lastMessageTime" >{{ chat.timestamp.toDate() | date: 'dd/MM/yyyy - HH:mm' }}</div>
+              </div>
+              </div>
+            </mat-card-header>
+          </ng-template>
+
+        </mat-card>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+<ng-template #noChats>
+  <p>No tienes ningún chat abierto, agrega a tus amigos para empezar a chatear.</p>
+</ng-template>

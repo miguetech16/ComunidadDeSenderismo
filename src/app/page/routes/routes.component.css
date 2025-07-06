@@ -1,0 +1,28 @@
+.routes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+  gap: 32px; 
+  padding: 32px;
+  justify-items: center;
+  align-items: start;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.home-image{
+  display: flex;
+  margin-left: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  

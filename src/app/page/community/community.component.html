@@ -1,0 +1,30 @@
+
+<div class="intro">
+    <img class="community-image" src="/assets/images/community.png"  alt="community_image">
+</div>
+
+<mat-card>
+
+    <h2>Conoce a nuestra Comunidad</h2>
+
+<app-user-searcher (searchTerm)="onSearchTermChanged($event)"></app-user-searcher>
+
+<div class="users-container"> 
+  <app-user-card class="user-card" *ngFor="let user of users$ | async" [user]="user"></app-user-card> 
+</div>
+</mat-card>
+
+<mat-card *ngIf="currentUserId">
+
+  <h2>Apuntate a Recorrer el mundo</h2>
+
+<ng-container *ngIf="openPlannedRoutes$ | async as plannedRoutes">
+  <div class="planned-container" *ngIf="plannedRoutes.length > 0; else noRoutes">
+    <app-planned-card *ngFor="let route of plannedRoutes" [plannedRoute]="route"></app-planned-card>
+  </div>
+</ng-container>
+
+<ng-template #noRoutes>
+  <p>La comunidad aún no ha subido Rutas Planificadas :(</p>
+</ng-template>
+</mat-card>

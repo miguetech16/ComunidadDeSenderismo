@@ -1,0 +1,43 @@
+
+<mat-card class="chat-container">
+    <mat-card-header class="card-header">
+    <div *ngIf="userid == chatData.users[0], else otherUser" class="header-content">
+        <div class="avatar-image">
+        <a [routerLink]="['/user-profile', chatData.users[1] || '/assets/images/default-profile.png'] ">
+          <img [src]="chatData.chatPicture[1]" alt="" class="avatar-img" />
+        </a>
+        </div>
+        <mat-card-title class="card-title">{{chatData.userNames[1]}}</mat-card-title>
+    </div>
+
+    <ng-template #otherUser>
+        <div class="avatar-image">
+          <a [routerLink]="['/user-profile', chatData.users[0] || '/assets/images/default-profile.png'] ">
+           <img [src]="chatData.chatPicture[0]" alt="" class="avatar-img" />
+          </a>
+        </div>
+        <mat-card-title class="card-title">{{chatData.userNames[0]}}</mat-card-title>
+    </ng-template>
+
+    </mat-card-header>
+
+    <mat-card-content id="message-container"class="card-content" >
+        <div *ngFor="let message of messagesList" [ngClass]="userid == message.emiterId ? 'sent msg' : 'received msg'" class="message-bubble">
+            <span class="message-text">{{ message.message }}</span>
+            <span class="message-time">{{ message.timestamp.toDate() | date: 'HH:mm' }}</span>
+        </div>
+
+    </mat-card-content>
+
+    <mat-card-footer>
+        <form (ngSubmit)="sendMessage()">
+            <mat-form-field class="message-container">
+            <input matInput [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." 
+            [ngModelOptions]="{standalone: true}">
+        </mat-form-field> 
+        <button type="submit"><mat-icon class="icon">send</mat-icon></button>
+        </form>
+    </mat-card-footer>
+
+
+</mat-card>

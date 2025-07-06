@@ -1,0 +1,48 @@
+<mat-card class="Comments">
+  <h2>Comentarios</h2>
+
+  <div *ngIf="comments.length === 0">
+    <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+  </div>
+
+  <div *ngFor="let comment of comments" class="comment">
+    <div class="comment-header">
+
+        <div mat-card-avatar class="avatar-image">
+          <a [routerLink]="['/user-profile', comment.userId]">
+            <img [src]="comment.profilePicture || '/assets/images/default-profile.png'" alt="" class="avatar-img" />
+          </a>
+        </div>
+
+      <mat-card-title>{{ comment.username }}</mat-card-title>
+      <span class="timestamp">{{ comment.timestamp | date:'short' }}</span>
+    
+
+<div *ngIf="comment.userId === currentUserId" class="comment-actions">
+  <mat-icon class="edit-icon" (click)="startEdit(comment.commentId)">edit</mat-icon>
+  <mat-icon class="delete-icon" (click)="deleteComment(comment.commentId)">delete</mat-icon>
+</div>
+</div>
+
+<section *ngIf="editingCommentId !== comment.commentId; else edition">
+  <p>{{ comment.content }}</p>
+</section>
+
+<ng-template #edition>
+  <mat-form-field class="full-width">
+    <textarea matInput [(ngModel)]="editedContent" [value]="comment.content" required></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" (click)="updateComment(comment.commentId)">
+    Editar Comentario
+  </button>
+  <br>
+</ng-template>
+    </div>
+
+  <mat-form-field class="full-width">
+    <textarea matInput [(ngModel)]="newCommentContent" placeholder="Escribe un comentario..."></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="submitComment()">Enviar</button>
+</mat-card>
+

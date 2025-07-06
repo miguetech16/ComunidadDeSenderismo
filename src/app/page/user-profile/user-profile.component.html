@@ -1,0 +1,175 @@
+
+<mat-card *ngIf="userData" class="profile-card">
+  <mat-card-header class="profile-header">
+    <div mat-card-avatar class="avatar-image">
+      <img [src]="userData.profilePicture || '/assets/images/default-profile.png'" alt="" class="avatar-img" />
+    </div>
+    <div class="profile-info">
+      <div class="username-line">
+        <span class="username">{{ userData.username }}</span>
+        <span class="privacy">{{ userData.isPrivate ? 'Privada' : 'Pública' }}</span>
+      </div>
+      <div class="fullname">{{ userData.fullname }}</div>
+      <div>{{ userData.profileDescription }}</div>
+    </div>
+
+
+<div class="social-info" [matMenuTriggerFor]="followersMenu">
+  <p>Seguidores</p>
+  <p>{{ followers.length }}</p>
+</div>
+
+<mat-menu #followersMenu="matMenu" class="follow-menu">
+  <ng-container *ngIf="followers.length > 0; else noFollowers">
+    <button class="Menubutton" mat-menu-item *ngFor="let follower of followers">
+    <div class="follow-item">
+      <a [routerLink]="['/user-profile', follower.userId || '/assets/images/default-profile.png'] ">
+        <img [src]="follower.userPicture || '/assets/images/default-profile.png'" alt="" class="follow-img"/>
+      </a>  
+        <span class="follow-username">{{ follower.userName }}</span>
+    </div>
+    </button>
+  </ng-container>
+  <ng-template #noFollowers>
+    <button mat-menu-item disabled>No tienes seguidores</button>
+  </ng-template>
+</mat-menu>
+
+
+<div class="social-info" [matMenuTriggerFor]="followingMenu">
+  <p>Seguidos</p>
+  <p>{{ following.length }}</p>
+</div>
+
+<mat-menu #followingMenu="matMenu" class="follow-menu">
+  <ng-container *ngIf="following.length > 0; else noFollowing">
+    <button class="Menubutton" mat-menu-item *ngFor="let follow of following">
+    <div class="follow-item">
+      <a [routerLink]="['/user-profile', follow.userId || '/assets/images/default-profile.png'] ">
+        <img [src]="follow.userPicture || '/assets/images/default-profile.png'" alt="" class="follow-img" />
+      </a>  
+        <span class="follow-username">{{ follow.userName }}</span>
+    </div>      
+    </button>
+  </ng-container>
+  <ng-template #noFollowing>
+    <button mat-menu-item disabled>No sigues a nadie</button>
+  </ng-template>
+</mat-menu>
+
+    
+    <div class="header-buttons" *ngIf="currentuserflag === true; else followButton">
+      <a mat-button [routerLink]="['/edit-profile', userData.uid]">Editar Perfil</a>
+      <button mat-raised-button color="primary" (click)="logOut()">
+        <mat-icon class="icon">logout</mat-icon>
+        Cerrar Sesión
+      </button>
+    </div>
+
+    <ng-template class="header-buttons" #followButton>
+      <div class="header-buttons" *ngIf="isfollower == false; else unfollowButton"> 
+        <button mat-raised-button color="primary" (click)="followAccount(currentuserid, userid)">
+          <mat-icon class="icon">person_add</mat-icon>
+            Seguir 
+        </button>
+
+        <button mat-raised-button color="primary" (click)="sendMessage()">
+          <mat-icon class="icon">chat</mat-icon>
+            Enviar Mensaje
+        </button>
+      </div>
+    </ng-template>
+
+    <ng-template class="header-buttons" #unfollowButton>
+      <div class="header-buttons"> 
+        <button mat-raised-button color="primary" (click)="unfollowAccount(currentuserid, userid)">
+          <mat-icon class="icon">person_remove</mat-icon>
+            Dejar de Seguir 
+        </button>
+
+        <button mat-raised-button color="primary" (click)="sendMessage()">
+          <mat-icon class="icon">chat</mat-icon>
+            Enviar Mensaje
+        </button>
+      </div>
+    </ng-template>
+
+
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <!-- Mostrar rutas solo si no es perfil privado ajeno -->
+  <ng-container *ngIf="!(currentuserflag === false && userData.isPrivate === true); else privateAccountMsg">
+    
+    <mat-card-header>
+      <mat-card-title>Rutas Compartidas</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="routes$ | async as routes">
+        <div class="routes-container" *ngIf="routes.length > 0; else noRoutes">
+          <app-route-card *ngFor="let route of routes" [route]="route"></app-route-card>
+        </div>
+        <ng-template #noRoutes>
+          <p *ngIf="currentuserflag">No tienes rutas compartidas aún.</p>
+          <p *ngIf="!currentuserflag">Este Usuario no ha compartido rutas aún.</p>
+        </ng-template>
+      </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-header>
+      <mat-card-title>Rutas Planificadas</mat-card-title>
+    </mat-card-header>
+    
+<!-- Para el usuario actual -->
+<mat-card-content>
+  <ng-container *ngIf="plannedRoutes$ | async as plannedRoutes">
+    <ng-container *ngIf="currentuserflag">
+      <div class="planned-container" *ngIf="plannedRoutes.length > 0; else noRoutes">
+        <app-planned-card *ngFor="let route of plannedRoutes" [plannedRoute]="route"></app-planned-card>
+      </div>
+
+    <ng-template #noRoutes>
+      <p>No tienes rutas planificadas aún.</p>
+    </ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="!currentuserflag">
+      <div class="planned-container">
+
+        <ng-container *ngIf="plannedRoutes.length > 0; else otherNoRoutes">
+
+        <ng-container *ngIf="currentuserid">
+          <ng-container *ngFor="let route of plannedRoutes">
+
+            <app-planned-card *ngIf="route.planType === true" [plannedRoute]="route">
+            </app-planned-card>
+
+          </ng-container>
+        </ng-container>
+
+        </ng-container>
+
+      </div>
+
+      <ng-template #otherNoRoutes>
+        <p>Este Usuario no tiene rutas planificadas públicas aún.</p>
+      </ng-template>
+    </ng-container>
+
+
+
+  </ng-container>
+</mat-card-content>
+
+  </ng-container>
+  <ng-template #privateAccountMsg>
+    <p class="private-message">La cuenta de este usuario es Privada.</p>
+  </ng-template>
+
+</mat-card>
+
+

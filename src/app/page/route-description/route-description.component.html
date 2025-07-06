@@ -1,0 +1,84 @@
+<mat-card class="route-card">
+  <mat-card-header>
+    <div class="header-flex">
+      <div>
+        <mat-card-title> {{ routeData.title }}  </mat-card-title>
+        <mat-card-subtitle>
+          <mat-icon class="icon">location_on</mat-icon>
+          {{ routeData.ubication[0] }}
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          {{ routeData.ubication[1] }}, {{ routeData.ubication[2] }}
+        </mat-card-subtitle>
+      </div>
+      <button *ngIf="creatorUserFlag"
+              mat-stroked-button
+              color="warn"
+              class="delete-btn"
+              (click)="deleteRoute()">
+        <mat-icon>delete</mat-icon> Eliminar
+      </button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="route-content-grid">
+
+      <div class="images-container" *ngIf="routeData.images && routeData.images.length > 0; else noImages">
+        <h2>Imágenes de la Ruta</h2>
+        <div class="images-list">
+          <img *ngFor="let img of routeData.images"
+               [src]="img"
+               alt="Imagen de ruta"
+               class="route-image" />
+        </div>
+      </div>
+      <ng-template #noImages>
+        <div class="no-images">
+          <mat-icon>image_not_supported</mat-icon>
+          <span>No hay imágenes disponibles.</span>
+        </div>
+      </ng-template>
+
+      <div class="description-section">
+        <section>
+          <h2>Descripción de la Ruta</h2>
+          <p class="desc-card">{{routeData.description}}</p>
+        </section>
+
+        <section class="recomendations-section">
+          <h2>Recomendaciones para la Ruta</h2>
+          <p class="desc-card">{{routeData.recommendations}}</p>
+        </section>
+
+        <section class="route-data-section">
+          <h2>Datos de la Ruta</h2>
+          <div class="route-details-list">
+            <div class="route-detail">
+              <mat-icon class="icon">directions_walk</mat-icon>
+              <span>Distancia: {{routeData.distance}} km</span>
+            </div>
+            <div class="route-detail">
+              <mat-icon class="icon">timer</mat-icon>
+              <span>Duración estimada: {{this.routeTime}}</span>
+            </div>
+            <div class="route-detail">
+              <mat-icon class="icon">workspace_premium</mat-icon>
+              <span>Dificultad: {{routeData.difficulty}}</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="map-card">
+  <app-mapview [location]="routeData.location"></app-mapview>
+</mat-card>
+
+<section class="comment-section">
+<app-comments [routeId]="routeData.id" [direction]="direction"></app-comments>
+</section>
+

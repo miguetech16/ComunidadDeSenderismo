@@ -1,0 +1,40 @@
+<div class="main"> 
+    <div class="singinform">
+      <h1>Inicio de Sesión</h1>
+      <form [formGroup]="form" (ngSubmit)="signIn()">
+  
+        <mat-card class="example-card" appearance="outlined">
+        <mat-form-field  class="email">
+          <mat-label>Ingresa tu email</mat-label>
+          <input matInput placeholder="Email de usuario." formControlName="email" required>
+          <div class="error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                <small *ngIf="form.get('email')?.errors?.['required']">El correo electrónico es obligatorio.</small>
+                <small *ngIf="form.get('email')?.errors?.['email']">Debe ser un email válido.</small>
+          </div>
+      </mat-form-field>
+  
+      <mat-form-field  class="password">
+        <mat-label>Ingresa una contraseña válida.</mat-label>
+        <input matInput [type]="'password'" placeholder="Contraseña." formControlName="password" required>
+        <div class="error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+          <small *ngIf="form.get('password')?.errors?.['required']">La contraseña es Obligatoria</small>
+          <small *ngIf="form.get('password')?.errors?.['minlength']">La contraseña debe contener al menos 6 caracteres.</small>
+        </div>
+      </mat-form-field>
+
+    <div>
+      <button mat-raised-button type="submit" [disabled]="!form.valid"> Iniciar Sesión </button>
+  </div>
+
+      <a class="message" [routerLink]="'/sign-up'" style="cursor: pointer; text-decoration: none;">
+        ¿No tienes una cuenta? Crea una.
+      </a>
+
+      <a class="message" [routerLink]="'/forgot-pass'" style="cursor: pointer; text-decoration: none;">
+        ¿Has olvidado tu contraseña? Restablece tu contraseña.
+      </a>
+    </mat-card>
+  
+      </form>
+    </div>
+  </div>  

@@ -1,0 +1,22 @@
+.route-search-container {
+    background: #a5d6a6;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-bar {
+    width: 100%;
+  }
+  
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .filter-container mat-form-field {
+    flex: 1 1 200px;
+  }
+  

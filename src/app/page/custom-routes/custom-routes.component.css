@@ -1,0 +1,10 @@
+
+.custom-image{
+  display: flex;
+  margin-left: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 3rem;
+}

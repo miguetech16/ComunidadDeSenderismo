@@ -1,0 +1,124 @@
+
+<div class="edit-profile-container" *ngIf="editProfileForm"> 
+  <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()">
+
+    <mat-card>
+    <h1>Editar Datos de Usuario</h1>
+    <mat-card-title>Editar Foto de Perfil</mat-card-title>
+
+    <input type="file" (change)="newImage($event)" accept=".jpg, .png, .jpeg" id="updateImages"/>
+    <label for="updateImages" class="inputImages">
+    <div mat-card-avatar class="avatar-image" *ngIf="userData">
+      <img [src]="selectedImage || '/assets/images/default-profile.png'" (click)="newImage($event)" alt="" class="avatar-img" />
+    </div>
+    </label>
+
+    <p>
+        <mat-icon class="icon">info</mat-icon>
+        Esta imagen será visible para otros usuarios y se mostrará en tu perfil.
+        No incluyas imágenes obscenas o inapropiadas.  
+    </p>
+
+    <mat-card-title>Editar Nombre de Usuario</mat-card-title>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Nombre de Usuario </mat-label>
+      <input matInput formControlName="username">
+        <div class="error" *ngIf="editProfileForm.get('username')?.invalid && editProfileForm.get('username')?.touched">
+          <small *ngIf="editProfileForm.get('username')?.errors?.['maxlength']">El nombre de Usuario no debe exceder los 20 caracteres.</small>
+          <small *ngIf="editProfileForm.get('username')?.errors?.['minlength']">El nombre de Usuario debe contener al menos 3 caracteres.</small>
+        </div>
+    </mat-form-field>
+
+    <mat-card-title>Editar Nombre Completo</mat-card-title>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Nombre Completo</mat-label>
+      <input matInput formControlName="fullname">
+             <div class="error" *ngIf="editProfileForm.get('fullname')?.invalid && editProfileForm.get('fullname')?.touched">
+          <small *ngIf="editProfileForm.get('fullname')?.errors?.['maxlength']">El nombre de Usuario no debe exceder los 20 caracteres.</small>
+          <small *ngIf="editProfileForm.get('fullname')?.errors?.['minlength']">El nombre de Usuario debe contener al menos 3 caracteres.</small>
+        </div>
+    </mat-form-field>
+
+    <mat-card-title>Editar tu Descripción de Perfil</mat-card-title>
+    <mat-form-field appearance="fill" class="form-textarea">
+      <mat-label>Descripción del Perfil</mat-label>
+      <textarea matInput formControlName="profileDescription" ></textarea>
+        <div class="error" *ngIf="editProfileForm.get('profileDescription')?.invalid && editProfileForm.get('profileDescription')?.touched">
+          <small *ngIf="editProfileForm.get('profileDescription')?.errors?.['maxlength']">El nombre de Usuario no debe exceder los 200 caracteres.</small>
+        </div>
+    </mat-form-field>
+
+   <mat-card-title>Edita la Privacidad de tu Cuenta</mat-card-title>
+    <mat-radio-group formControlName="privateProfile">
+      <mat-radio-button [value]="false">Cuenta Pública</mat-radio-button>
+      <mat-radio-button [value]="true">Cuenta Privada</mat-radio-button>
+    </mat-radio-group>
+    
+    <button mat-raised-button color="primary" type="submit">Guardar Cambios</button>
+
+    </mat-card>
+  </form>
+  </div>
+
+  <div class="edit-profile-container" *ngIf="editUserDataForm">
+
+    <form [formGroup]="editUserDataForm" (ngSubmit)="editData()">
+  
+    <mat-card>
+    <h1>Editar Datos Personales</h1>
+
+    <mat-card-title>Cambiar Correo Electrónico</mat-card-title>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Correo Electrónico</mat-label>
+      <input matInput formControlName="email" required>
+    </mat-form-field>
+
+    <mat-card-title>Cambiar Número de Perfil</mat-card-title>
+    <mat-form-field appearance="fill" class="form-field"> 
+      <mat-label>Número de Teléfono</mat-label>
+      <input type="tel" matInput formControlName="phonenumber">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="editProfileForm.invalid" type="submit">Modificar Datos</button>
+    </mat-card>
+    </form>
+
+    </div>
+
+    <div class="edit-profile-container">
+    
+    <form [formGroup]="newPasswordForm" (ngSubmit)="changePassword()">
+
+    <mat-card>
+    <h1>Cambiar de Contraseña</h1>
+
+    <mat-card-title>Establecer Nueva Contraseña</mat-card-title>
+    <mat-form-field appearance="fill" class="password-field"> 
+      <mat-label>Nueva Contraseña</mat-label>
+      <input type="password" matInput formControlName="newpassword">
+      <div class="error" *ngIf="newPasswordForm.get('newpassword')?.invalid && newPasswordForm.get('newpassword')?.touched">
+          <small *ngIf="newPasswordForm.get('newpassword')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
+      </div>
+    </mat-form-field>
+
+    <mat-card-title>Confirmar Nueva Contraseña</mat-card-title>
+    <mat-form-field appearance="fill" class="password-field"> 
+      <mat-label>Confirmar Contraseña</mat-label>
+      <input type="password" matInput formControlName="confirmpassword">
+    </mat-form-field>
+
+    <div class="error" *ngIf="passwordsMatch == false">
+      <small>Las contraseñas deben coincidir.</small>
+    </div>
+
+    <div class="successMsg" *ngIf="passwordsMatch == true">
+      <span>Se ha establecido una contraseña nueva.</span>
+      <br>
+      <span>No la olvides ;)</span>
+    </div>
+
+    <button mat-raised-button color="primary" [disabled]="newPasswordForm.invalid" type="submit">Establecer Contraseña</button>
+    </mat-card>
+    </form>
+
+  </div>

@@ -1,0 +1,135 @@
+<div class="spinner-container" *ngIf="!plannedRouteData"> 
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="planned-view" *ngIf="plannedRouteData">
+  <mat-card-header>
+    <div class="header-left">
+    <div mat-card-avatar class="avatar-image">
+      <a [routerLink]="['/user-profile', plannedRouteData.creatorId]">
+        <img [src]="plannedRouteData.creatorAvatar || 'assets/images/default-profile.png'" alt="" class="avatar-img" />
+      </a>
+    </div>
+      <mat-card-subtitle>{{ plannedRouteData.creatorName }}</mat-card-subtitle>
+    </div>
+    <mat-card-title>{{ plannedRouteData.plannedRouteTitle }}</mat-card-title>
+
+  </mat-card-header>
+
+  <mat-card-content>
+    <img [src]="plannedRouteData.routePicture" alt="route_img" class="route-image"/>
+    <div class="info-grid">
+
+<div class="info-item">
+  <mat-icon class="icon">event</mat-icon>
+
+  <ng-container *ngIf="!updateDateflag">
+    {{ plannedRouteData.date | date: 'dd/MM/yyyy' }}
+    <div *ngIf="currentUserFlag">
+      <mat-icon (click)="updateDate()">edit</mat-icon>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="updateDateflag">
+    <input type="date" [(ngModel)]="selectedDate">
+    <mat-icon (click)="updateDate()">check</mat-icon>
+    <mat-icon (click)="cancelUpdateDate()">close</mat-icon>
+  </ng-container>
+</div>
+
+
+<div class="info-item">
+  <mat-icon class="icon">schedule</mat-icon>
+  
+  <ng-container *ngIf="!updateHourflag">
+    {{ plannedRouteData.hour }}
+    <div *ngIf="currentUserFlag">
+      <mat-icon (click)="updateHour()">edit</mat-icon>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="updateHourflag">
+    <!-- Campo para editar la hora -->
+    <input type="time" [(ngModel)]="selectedHour" style="width:100px;">
+    <mat-icon (click)="updateHour()">check</mat-icon>
+    <mat-icon (click)="cancelUpdateHour()">close</mat-icon>
+  </ng-container>
+</div>
+
+
+    <div class="info-item">
+        <mat-icon class="icon">settings_accessibility</mat-icon> {{ plannedRouteData.planType ? 'Planificación Abierta' : 'Planificación Cerrada' }}
+    </div>
+
+    <div class="info-item">
+        <mat-icon class="icon">groups</mat-icon> Participantes: {{ participants.length }}
+    </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+  <button  mat-raised-button color="primary" [routerLink]="['/route-description', plannedRouteData.routeId]" >Ver Ruta</button>
+    
+  <button mat-raised-button color="warn" *ngIf="currentUserFlag" (click)="deletePlannedRoute()" aria-label="Eliminar planificación">
+    <mat-icon>delete</mat-icon> Eliminar Planificación
+  </button>
+
+  <button  mat-raised-button color="warn" *ngIf="!currentUserFlag && participantFlag" (click)="exitPlan()" aria-label="Dejar plan">
+    <mat-icon>exit_to_app</mat-icon> Dejar Plan
+  </button>
+
+  <button mat-raised-button color="primary" *ngIf="!currentUserFlag && !participantFlag" (click)="joinPlan()" aria-label="Unirse al plan">
+    <mat-icon>person_add</mat-icon> Unirse al Plan
+  </button>
+    
+  </mat-card-actions>
+  </div>
+
+<mat-card class="participants-list">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="info-item">
+          <mat-icon class="icon">groups</mat-icon> Participantes
+        </div>
+      </mat-card-title>
+
+      <div *ngIf="currentUserFlag">
+        <button mat-raised-button color="primary" (click)="inviteUser()"> 
+          <mat-icon class="icon">person_add</mat-icon>
+          Invitar Personas
+        </button>
+      </div>
+
+      <ng-container *ngIf="!currentUserFlag">
+        <ng-container *ngIf="plannedRouteData.planType; else privatePlan">
+          <button mat-raised-button color="primary" (click)="inviteUser()"> 
+            <mat-icon class="icon">person_add</mat-icon>
+            Invitar Personas
+          </button>
+        </ng-container>
+      </ng-container>
+
+      <ng-template #privatePlan>
+      </ng-template>
+
+    </mat-card-header>
+<div class="users-container">
+  <div class="user-card-container" *ngFor="let user of participants">
+    <app-user-card class="user-card" [user]="user"></app-user-card>
+    <button
+      *ngIf="currentUserFlag && user.uid !== plannedRouteData.creatorId"
+      class="remove-btn"
+      mat-icon-button
+      aria-label="Eliminar usuario"
+      (click)="removeParticipant(user.uid)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+</mat-card>
+
+<div class="comments-container" *ngIf="participantFlag">
+<app-comments [routeId]="plannedRouteData.id" [direction]="direction"></app-comments>
+</div>
+
