@@ -1,4 +1,8 @@
-<mat-card class="route-card">
+<div  *ngIf="!routeData" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-card *ngIf="routeData" class="route-card">
   <mat-card-header>
     <div class="header-flex">
       <div>

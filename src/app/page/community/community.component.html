@@ -1,4 +1,8 @@
+<div class="spinner-container" *ngIf="!users$"> 
+  <mat-spinner></mat-spinner>
+</div>
 
+<div *ngIf="users$">
 <div class="intro">
     <img class="community-image" src="/assets/images/community.png"  alt="community_image">
 </div>
@@ -28,3 +32,4 @@
   <p>La comunidad aún no ha subido Rutas Planificadas :(</p>
 </ng-template>
 </mat-card>
+</div>

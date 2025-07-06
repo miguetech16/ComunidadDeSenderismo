@@ -28,6 +28,7 @@ export class CommunityComponent implements OnInit {
   protected openPlannedRoutes: plannedRoute[] = [];
   protected currentUserId!: string;
 
+
   constructor(private userService: UserService,
               private plannedRouteService: PlannedRoutesService,
               private authService: AuthService,
@@ -59,6 +60,7 @@ async ngOnInit(): Promise<void> {
       map(routes => routes.filter(r => r.planType === true))
     );
   });
+
 }
 
 

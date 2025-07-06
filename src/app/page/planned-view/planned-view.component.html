@@ -24,7 +24,7 @@
   <mat-icon class="icon">event</mat-icon>
 
   <ng-container *ngIf="!updateDateflag">
-    {{ plannedRouteData.date | date: 'dd/MM/yyyy' }}
+    {{ plannedRouteData.date.toDate() | date: 'dd/MM/yyyy' }}
     <div *ngIf="currentUserFlag">
       <mat-icon (click)="updateDate()">edit</mat-icon>
     </div>
