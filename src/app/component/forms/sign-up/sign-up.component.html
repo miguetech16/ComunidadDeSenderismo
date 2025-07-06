@@ -37,7 +37,7 @@
 
         <mat-form-field  class="phonenumber">
             <mat-label>Ingresa tu número de telefono</mat-label>
-            <input matInput placeholder="Número de telefono." formControlName="phonenumber" required>
+            <input matInput type="telf" placeholder="Número de telefono." formControlName="phonenumber" required>
             <div class="error" *ngIf="form.get('phonenumber')?.invalid && form.get('phonenumber')?.touched">
                 <small *ngIf="form.get('phonenumber')?.errors?.['required']">El número de telefóno es obligatorio.</small>
                 <small *ngIf="form.get('phonenumber')?.errors?.['pattern']">Debe incluir su número con 9 dígitos.</small>

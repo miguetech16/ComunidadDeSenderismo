@@ -1,20 +1,20 @@
 .images-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    justify-items: center;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
 
-  h2 {
+h2 {
   font-size: 1.8rem;
   color: #2e7d32;
   margin: 1rem;
   border-bottom: 2px solid #c8e6c9;
   padding-bottom: 0.5rem;
-  }
+}
 
-.community-image{
+.community-image {
   display: flex;
   margin-left: 2rem;
   justify-content: center;
@@ -23,28 +23,28 @@
   max-width: 1400px;
   margin-bottom: 3rem;
 }
-  
-  .user-card {
-    width: 100%;
-    max-width: 350px;
-  }
 
- .user-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    padding: 10px;
-  }
-    
-  .user-card p {
-    font-size: 1em;
-    color: #555;
-  }
+.user-card {
+  width: 100%;
+  max-width: 350px;
+}
+
+.user-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  padding: 10px;
+}
+  
+.user-card p {
+  font-size: 1em;
+  color: #555;
+}
 
 .avatar-image {
-    background-image: url(https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png);
-    background-size: cover;
-    background-position: center;
+  background-image: url(https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png);
+  background-size: cover;
+  background-position: center;
 }
 
 /* Contenedor general para todos los usuarios */
@@ -67,4 +67,87 @@
   justify-items: center;
   margin: 1rem;
 }
-  
+
+/* ------- Responsive 600px ------- */
+@media (max-width: 600px) {
+  .images-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    margin: 0.6rem;
+    padding-bottom: 0.22rem;
+  }
+
+  .community-image {
+    margin-left: 0;
+    max-width: 100vw;
+    margin-bottom: 1.3rem;
+    padding: 0 2vw;
+  }
+
+  .user-card {
+    max-width: 98vw;
+    padding: 0;
+  }
+
+  .user-card img {
+    padding: 4px;
+    border-radius: 6px;
+  }
+
+  .user-card p {
+    font-size: 0.96em;
+  }
+
+  .users-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 8px;
+  }
+
+  .planned-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 8px;
+    margin: 0.5rem;
+  }
+}
+
+/* ------- Responsive 400px ------- */
+@media (max-width: 400px) {
+  .images-container,
+  .users-container,
+  .planned-container {
+    padding: 2px;
+    gap: 6px;
+  }
+
+  h2 {
+    font-size: 1em;
+    margin: 0.3rem;
+    padding-bottom: 0.15rem;
+  }
+
+  .community-image {
+    margin-bottom: 0.5rem;
+    padding: 0 3vw;
+  }
+
+  .user-card {
+    max-width: 100vw;
+    padding: 0;
+  }
+
+  .user-card img {
+    padding: 2px;
+    border-radius: 4px;
+  }
+
+  .user-card p {
+    font-size: 0.92em;
+  }
+}

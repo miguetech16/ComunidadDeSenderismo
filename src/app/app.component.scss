@@ -8,5 +8,11 @@
   flex: 1 0 auto;
   padding: 2rem;
   background-color: rgb(233, 255, 226);
-  min-height: 0; // <-- IMPORTANTE para que flexbox no crezca ilimitadamente
+  min-height: 0; 
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding: 1rem; 
+  }
 }

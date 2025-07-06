@@ -76,3 +76,76 @@
   margin-left: auto;
   flex-shrink: 0;
 }
+
+/* ------- Responsive 600px ------- */
+@media (max-width: 600px) {
+  .chat-list-card {
+    padding: 0.6rem;
+    border-radius: 7px;
+  }
+
+  .chatTitle {
+    font-size: 1.18rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .chat-item-card {
+    padding: 0.45rem;
+  }
+
+  .avatar-image {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.5rem;
+  }
+
+  .userName {
+    font-size: 1.1rem;
+    margin-top: 0.25rem;
+  }
+
+  .lastMessage {
+    font-size: 1rem;
+    max-width: 65%;
+  }
+
+  .lastMessageTime {
+    font-size: 0.86rem;
+  }
+}
+
+/* ------- Responsive 400px ------- */
+@media (max-width: 400px) {
+  .chat-list-card {
+    padding: 0.28rem;
+    border-radius: 5px;
+  }
+
+  .chatTitle {
+    font-size: 1em;
+    margin-bottom: 0.22rem;
+  }
+
+  .chat-item-card {
+    padding: 0.2rem;
+  }
+
+  .avatar-image {
+    width: 26px;
+    height: 26px;
+    margin-right: 0.22rem;
+  }
+
+  .userName {
+    font-size: 0.92rem;
+  }
+
+  .lastMessage {
+    font-size: 0.8rem;
+    max-width: 85%;
+  }
+
+  .lastMessageTime {
+    font-size: 0.73rem;
+  }
+}

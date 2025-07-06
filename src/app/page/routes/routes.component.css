@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-.home-image{
+.home-image {
   display: flex;
   margin-left: 2rem;
   justify-content: center;
@@ -19,10 +19,29 @@
 }
 
 h1 {
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #333;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .routes-container {
+    grid-template-columns: 1fr;  /* Una sola columna en móvil */
+    gap: 14px;
+    padding: 10px;
   }
-  
-  
+
+  .home-image {
+    margin-left: 10px;
+    width: 100vw;
+    max-width: 100%;
+    padding: 0 2vw;
+  }
+
+  h1 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+}

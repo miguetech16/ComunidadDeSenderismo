@@ -189,6 +189,7 @@ mat-card-content {
   max-width: 90%;
 }
 
+/* ----------- Responsive 900px ----------- */
 @media (max-width: 900px) {
   .route-content-grid {
     grid-template-columns: 1fr;
@@ -198,5 +199,93 @@ mat-card-content {
   .map-card, .route-card {
     max-width: 99vw;
     margin: 10px;
+  }
+}
+
+/* ----------- Responsive 600px ----------- */
+@media (max-width: 600px) {
+  .route-card {
+    margin: 8px 0;
+    max-width: 100vw;
+    border-radius: 8px;
+  }
+  .header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 0;
+  }
+  mat-card-header {
+    padding: 13px 10px 10px 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  mat-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+  }
+  mat-card-subtitle {
+    font-size: 1rem;
+    margin-top: 0.2rem;
+  }
+  .delete-btn {
+    margin-left: 0;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    padding: 7px 16px;
+    border-radius: 6px;
+  }
+  .route-content-grid {
+    padding: 12px 2vw 16px 2vw;
+    gap: 18px;
+  }
+  .images-container {
+    padding: 6px 0;
+  }
+  .images-container h2 {
+    font-size: 1rem;
+    margin-bottom: 7px;
+  }
+  .images-list {
+    gap: 6px;
+    justify-content: center;
+  }
+  .route-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 5px;
+  }
+  .no-images {
+    font-size: 0.98rem;
+    padding: 20px 0 20px 0;
+  }
+  .description-section h2 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .desc-card {
+    font-size: 0.97rem;
+    padding: 11px 10px 10px 10px;
+    border-radius: 5px;
+  }
+  .route-detail {
+    font-size: 0.96rem;
+    padding: 7px 8px;
+    border-radius: 5px;
+    gap: 7px;
+  }
+  .route-detail .icon {
+    font-size: 1.1em;
+    margin-right: 4px;
+  }
+  .map-card {
+    max-width: 100vw;
+    margin: 14px 0 4px 0;
+    border-radius: 8px;
+  }
+  .comment-section {
+    margin-left: 0;
+    max-width: 100vw;
+    padding: 0 2vw;
   }
 }

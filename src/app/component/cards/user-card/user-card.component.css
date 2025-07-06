@@ -1,4 +1,3 @@
-
 /* Tarjeta de usuario individual */
 .user-card {
   width: 100%;
@@ -42,4 +41,38 @@ button[mat-button] {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* --------- Responsive 600px --------- */
+@media (max-width: 600px) {
+  .user-card {
+    max-width: 97vw;
+    border-radius: 10px;
+  }
+  .avatar-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 7px;
+  }
+  button[mat-button] {
+    font-size: 0.97rem;
+    margin-top: 6px;
+  }
+}
+
+/* --------- Responsive 400px --------- */
+@media (max-width: 400px) {
+  .user-card {
+    max-width: 100vw;
+    border-radius: 5px;
+  }
+  .avatar-image {
+    width: 28px;
+    height: 28px;
+    margin-right: 4px;
+  }
+  button[mat-button] {
+    font-size: 0.83rem;
+    margin-top: 3px;
+  }
 }

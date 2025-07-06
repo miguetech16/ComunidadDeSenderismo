@@ -32,7 +32,6 @@
     font-weight: bold;
 }
 
-/* Footer and form styling */
 mat-card-footer {
     border-top: 1px solid #ccc;
     padding-top: 1em;
@@ -62,7 +61,6 @@ form {
     border-color: #1ba31b;
 }
 
-/* Send button */
 button[type="submit"] {
     background-color: #1ba31b;
     color: white;
@@ -93,16 +91,13 @@ button[type="submit"]:hover {
   height: 400px;
   overflow-y: auto;
   padding: 1em;
-
-  /* Ocultar scrollbar para Firefox */
   scrollbar-width: none;
-  -ms-overflow-style: none; /* IE 10+ */
+  -ms-overflow-style: none;
 }
 
 .card-content::-webkit-scrollbar {
-  display: none; /* Chrome, Safari y Edge */
+  display: none;
 }
-
 
 .message {
   margin-top: 1rem;
@@ -144,7 +139,6 @@ button[type="submit"]:hover {
   overflow-wrap: break-word;
 }
 
-
 .message-time {
   display: block;
   font-size: 0.75rem;
@@ -166,4 +160,157 @@ button[type="submit"]:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* --------- Responsive 600px --------- */
+@media (max-width: 600px) {
+  .chat-container {
+    margin: 0.7em 0;
+    max-width: 99vw;
+    padding: 0.7em;
+    border-radius: 10px;
+  }
+
+  .card-header {
+    font-size: 1.05rem;
+    padding: 0.7em;
+    border-radius: 7px 7px 0 0;
+  }
+
+  .header-content {
+    gap: 7px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  mat-card-footer {
+    padding-top: 0.6em;
+  }
+
+  form {
+    gap: 0.5em;
+  }
+
+  .message-container input[matInput] {
+    font-size: 0.94rem;
+    padding: 0.45em 0.5em;
+    border-radius: 6px;
+  }
+
+  button[type="submit"] {
+    font-size: 0.97rem;
+    padding: 0.4em 0.7em;
+    border-radius: 6px;
+  }
+
+  .card-content {
+    height: 220px;
+    padding: 0.5em;
+    border-radius: 0 0 7px 7px;
+  }
+
+  .message {
+    margin-top: 0.55rem;
+    padding: 0.35em 0.65em;
+    font-size: 0.88rem;
+    border-radius: 1em;
+    max-width: 94vw;
+  }
+
+  .sent,
+  .received {
+    min-width: 32px;
+    max-width: 85%;
+    padding: 3px;
+    font-size: 0.82rem;
+  }
+
+  .message-time {
+    font-size: 0.67rem;
+    margin-top: 0.25rem;
+  }
+
+  .avatar-image {
+    width: 38px;
+    height: 38px;
+    margin-right: 6px;
+  }
+}
+
+/* --------- Responsive 400px --------- */
+@media (max-width: 400px) {
+  .chat-container {
+    margin: 0.3em 0;
+    padding: 0.25em;
+    border-radius: 5px;
+  }
+
+  .card-header {
+    font-size: 0.85rem;
+    padding: 0.3em;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .header-content {
+    gap: 2px;
+  }
+
+  .card-title {
+    font-size: 0.85rem;
+  }
+
+  mat-card-footer {
+    padding-top: 0.2em;
+  }
+
+  form {
+    gap: 0.18em;
+  }
+
+  .message-container input[matInput] {
+    font-size: 0.77rem;
+    padding: 0.22em 0.22em;
+    border-radius: 3px;
+  }
+
+  button[type="submit"] {
+    font-size: 0.75rem;
+    padding: 0.18em 0.25em;
+    border-radius: 3px;
+  }
+
+  .card-content {
+    height: 110px;
+    padding: 0.2em;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .message {
+    margin-top: 0.28rem;
+    padding: 0.15em 0.32em;
+    font-size: 0.68rem;
+    border-radius: 0.5em;
+    max-width: 99vw;
+  }
+
+  .sent,
+  .received {
+    min-width: 20px;
+    max-width: 100%;
+    padding: 2px;
+    font-size: 0.67rem;
+  }
+
+  .message-time {
+    font-size: 0.57rem;
+    margin-top: 0.15rem;
+  }
+
+  .avatar-image {
+    width: 22px;
+    height: 22px;
+    margin-right: 2px;
+  }
 }
