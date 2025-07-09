@@ -1,5 +1,3 @@
-// mail.service.ts
-
 import { Resend } from 'resend';
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';

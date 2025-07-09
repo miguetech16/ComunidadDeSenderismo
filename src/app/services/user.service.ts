@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Firestore, docData } from '@angular/fire/firestore';  
-import { user } from '../interfaces/user.interface';
-import { doc, setDoc, deleteDoc } from 'firebase/firestore';
-import { AuthService } from './auth.service';
-import { getDoc } from 'firebase/firestore';
-import { collection} from 'firebase/firestore';
+import { Firestore, docData, doc, getDoc, setDoc, deleteDoc, collection } from '@angular/fire/firestore';  
 import { collectionData } from '@angular/fire/firestore'
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
+import { user } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +84,7 @@ async isFollowing(currentUserId: string, targetUserId: string): Promise<boolean>
 
 
 followAccount(currentUserId: string, followedUserId: string) {
-  if (currentUserId === followedUserId) return; // Evitar seguirse a sí mismo
+  if (currentUserId === followedUserId) return; 
 
   const currentUserRef = doc(this.db, `users/${currentUserId}`);
   const followedUserRef = doc(this.db, `users/${followedUserId}`);
@@ -105,7 +102,7 @@ followAccount(currentUserId: string, followedUserId: string) {
 
       const followedAt = new Date();
 
-      // Info del usuario seguido → para guardar en "following"
+      // Info del usuario seguido 
       const followingInfo = {
         followedAt,
         userId: followedUserId,
@@ -113,7 +110,7 @@ followAccount(currentUserId: string, followedUserId: string) {
         userPicture: followedUserData['profilePicture'] || null
       };
 
-      // Info del seguidor → para guardar en "followers"
+      // Info del seguidor 
       const followerInfo = {
         followedAt,
         userId: currentUserId,

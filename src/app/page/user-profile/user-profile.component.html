@@ -59,7 +59,7 @@
 
     
     <div class="header-buttons" *ngIf="currentuserflag === true; else followButton">
-      <a mat-button [routerLink]="['/edit-profile', userData.uid]">Editar Perfil</a>
+      <a mat-raised-button color="primary"  [routerLink]="['/edit-profile', userData.uid]">Editar Perfil</a>
       <button mat-raised-button color="primary" (click)="logOut()">
         <mat-icon class="icon">logout</mat-icon>
         Cerrar Sesión

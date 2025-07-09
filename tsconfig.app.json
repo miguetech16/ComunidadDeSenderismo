@@ -3,7 +3,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": ["node", "react"]
+    "types": ["node", "jasmine", "react"]
   },
   "files": [
     "src/main.ts",

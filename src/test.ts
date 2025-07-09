@@ -12,3 +12,7 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting(),
 );
+
+// Automatically import all spec files (Angular CLI way)
+const allSpecFiles = (require as any).context('./', true, /\.spec\.ts$/);
+allSpecFiles.keys().forEach(allSpecFiles);

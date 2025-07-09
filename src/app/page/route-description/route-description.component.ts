@@ -25,7 +25,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class RouteDescriptionComponent implements OnInit {
   protected routeId!: string;
-  protected routeData: any;
+  routeData: any;
   protected routeTime: any;
   protected comments: comment[] = [];
   protected newCommentContent: string = '';
